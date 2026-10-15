@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Grok — Ingliz tilini o'rganing</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F6FB;--surface:#FFFFFF;--ink:#14213D;--muted:#55627F;--brand:#2F5BFF;--brand-ink:#FFFFFF;--sun:#FFD23F;--line:#D8DFEE;--ok:#1E9E6A;--bad:#D6453D;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1630;--surface:#17224A;--ink:#EEF2FF;--muted:#A5B1D6;--brand:#6F8CFF;--brand-ink:#0E1630;--sun:#FFD23F;--line:#2A3763;--ok:#4BD39B;--bad:#FF7B73;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1630;--surface:#17224A;--ink:#EEF2FF;--muted:#A5B1D6;--brand:#6F8CFF;--brand-ink:#0E1630;--sun:#FFD23F;--line:#2A3763;--ok:#4BD39B;--bad:#FF7B73;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Figtree,system-ui,sans-serif;line-height:1.6;font-size:17px}
+h1,h2,h3{font-family:"Bricolage Grotesque",Figtree,system-ui,sans-serif;line-height:1.1;margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.logo{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:28px;letter-spacing:-.03em}
+.logo i{display:inline-block;width:12px;height:12px;background:var(--sun);border-radius:50%;margin-left:3px}
+nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600;font-size:15px}
+nav a:hover,nav a:focus-visible{color:var(--brand)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:36px 0 64px}
+.hero h1{font-size:clamp(40px,7vw,74px);font-weight:800;letter-spacing:-.035em}
+.hero p{color:var(--muted);max-width:46ch;margin:18px 0 26px}
+.btn{display:inline-block;background:var(--brand);color:var(--brand-ink);border:0;border-radius:12px;padding:13px 22px;font:600 16px Figtree,sans-serif;cursor:pointer;text-decoration:none}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--line);margin-left:8px}
+.btn:focus-visible,.card-btn:focus-visible,.opt:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.flash{perspective:900px;width:100%;max-width:380px;justify-self:center}
+.card-btn{all:unset;display:block;width:100%;height:260px;cursor:pointer;position:relative;transform-style:preserve-3d;transition:transform .5s}
+.card-btn.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:22px;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px}
+.front{background:var(--brand);color:var(--brand-ink)}
+.back{background:var(--sun);color:#14213D;transform:rotateY(180deg)}
+.face b{font-family:"Bricolage Grotesque",sans-serif;font-size:42px;font-weight:800}
+.face small{margin-top:10px;opacity:.85}
+.fc-ctl{display:flex;justify-content:space-between;align-items:center;margin-top:14px;color:var(--muted);font-size:15px}
+.fc-ctl button{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font:600 15px Figtree,sans-serif;cursor:pointer}
+section{padding:56px 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(28px,4vw,40px);margin-bottom:14px;letter-spacing:-.02em}
+.lead{color:var(--muted);max-width:62ch}
+.about{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:28px}
+.about div{border-left:4px solid var(--sun);padding-left:16px}
+.about h3{font-size:21px;margin-bottom:6px}
+.about p{margin:0;color:var(--muted);font-size:16px}
+.levels{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+.lv{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.lv b{font-family:"Bricolage Grotesque",sans-serif;font-size:30px;color:var(--brand)}
+.lv p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px;margin-top:22px;max-width:680px}
+.q{font:700 24px "Bricolage Grotesque",sans-serif;margin:6px 0 16px}
+.opt{all:unset;display:block;box-sizing:border-box;width:100%;padding:13px 16px;margin-bottom:10px;border:2px solid var(--line);border-radius:12px;cursor:pointer;font-weight:600}
+.opt:hover{border-color:var(--brand)}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,transparent)}
+.opt.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,transparent)}
+.meta{color:var(--muted);font-size:15px;display:flex;justify-content:space-between}
+.chat{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px;margin-top:22px;max-width:680px}
+.log{height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:4px}
+.m{max-width:82%;padding:10px 14px;border-radius:16px;white-space:pre-wrap}
+.m.bot{background:var(--bg);align-self:flex-start}
+.m.me{background:var(--brand);color:var(--brand-ink);align-self:flex-end}
+.bar{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.bar input{flex:1;min-width:140px;padding:12px 14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:16px Figtree,sans-serif}
+#mic.on{background:var(--bad);color:#fff}
+.vo{display:block;margin-top:10px;color:var(--muted);font-size:15px}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px;max-width:720px}
+.plan{background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:24px}
+.plan.pro{border-color:var(--brand)}
+.price{font:800 34px "Bricolage Grotesque",sans-serif;margin:6px 0 10px}
+.price span{font-size:16px;color:var(--muted);font-weight:600}
+.plan ul{padding-left:18px;margin:0 0 20px;color:var(--muted)}
+.note{color:var(--muted);font-size:14px;margin:10px 0 0}
+@media(max-width:760px){.plans{grid-template-columns:1fr}}
+footer{padding:30px 0 40px;color:var(--muted);font-size:15px;border-top:1px solid var(--line)}
+@media(max-width:760px){.hero,.about{grid-template-columns:1fr}.levels{grid-template-columns:1fr 1fr}nav a:nth-child(n+3){display:none}}
+@media(prefers-reduced-motion:reduce){.card-btn{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="logo">Grok<i></i></div>
+  <nav><a href="#about">Sayt haqida</a><a href="#quiz">Test</a><a href="#chat">Suhbat</a><a href="#tarif">Tarif</a></nav>
+</header>
+
+<div class="hero">
+  <div>
+    <h1>Ingliz tilini tushunib o'rganing.</h1>
+    <p>Grok — ingliz tilini o'rganishga yordam beruvchi sayt. Har kuni bir nechta so'z, qisqa mashq va test: oddiy, tushunarli, o'zbek tilida.</p>
+    <a class="btn" href="#quiz">Testni boshlash</a><a class="btn alt" href="#about">Grok nima?</a>
+  </div>
+  <div class="flash">
+    <button class="card-btn" id="card" aria-label="Kartani aylantirish">
+      <div class="face front"><b id="en">hello</b><small>Tarjimasini ko'rish uchun bosing</small></div>
+      <div class="face back"><b id="uz">salom</b><small id="ex">Hello, my name is Ali.</small></div>
+    </button>
+    <div class="fc-ctl"><span id="cnt">1 / 8</span><button id="next">Keyingi so'z</button></div>
+  </div>
+</div>
+
+<section id="about">
+  <h2>Grok nima?</h2>
+  <p class="lead">Grok — ingliz tilini noldan boshlab o'rganmoqchi bo'lganlar uchun yaratilgan o'quv sayti. "Grok" so'zi biror narsani chuqur va to'liq tushunish degan ma'noni bildiradi. Bizning maqsad ham shu: so'zlarni yodlab emas, tushunib o'rganish.</p>
+  <div class="about">
+    <div><h3>Kartalar bilan so'z o'rganish</h3><p>Har bir so'z tarjimasi va misol gap bilan beriladi. Kartani bosing va ma'nosini ko'ring.</p></div>
+    <div><h3>Darrov test</h3><p>O'rganganingizni test bilan tekshiring. Javob berishingiz bilan to'g'ri javob ko'rinadi.</p></div>
+    <div><h3>O'zbek tilida tushuntirish</h3><p>Hamma narsa o'zbekcha izohlanadi, shuning uchun murakkab qoidalar ham oson tushuniladi.</p></div>
+  </div>
+</section>
+
+<section id="levels">
+  <h2>Darajalar</h2>
+  <p class="lead">O'zingizga mos darajadan boshlang va bosqichma-bosqich yuqoriga ko'tariling.</p>
+  <div class="levels">
+    <div class="lv"><b>A1</b><p>Salomlashish, tanishuv, oddiy so'zlar</p></div>
+    <div class="lv"><b>A2</b><p>Kundalik suhbat, oila, xarid qilish</p></div>
+    <div class="lv"><b>B1</b><p>Fikr bildirish, sayohat, ish</p></div>
+    <div class="lv"><b>B2</b><p>Erkin muloqot, murakkab matnlar</p></div>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>Tezkor test</h2>
+  <p class="lead">7 ta qiyin savol (B2–C1): grammatika va murakkab so'zlar. To'g'ri javobni tanlang.</p>
+  <div class="quiz" aria-live="polite">
+    <div class="meta"><span id="qn"></span><span id="sc"></span></div>
+    <div class="q" id="q"></div>
+    <div id="opts"></div>
+    <button class="btn" id="again" style="display:none">Qayta urinish</button>
+  </div>
+</section>
+
+<section id="chat">
+  <h2>Grok bilan gaplashing</h2>
+  <p class="lead">Mikrofon tugmasini bosing va inglizcha gapiring. Grok ovoz bilan javob beradi, xatolaringizni to'g'irlaydi va suhbatni davom ettiradi. Xohlasangiz yozib ham yuborishingiz mumkin.</p>
+  <div class="chat">
+    <div class="log" id="log" aria-live="polite"></div>
+    <div class="bar">
+      <button class="btn" id="mic">🎤 Gapirish</button>
+      <input id="msg" placeholder="Yoki shu yerga yozing…" aria-label="Xabar">
+      <button class="btn alt" id="go" style="margin:0">Yuborish</button>
+    </div>
+    <label class="vo"><input type="checkbox" id="vo" checked> Grok ovoz bilan javob bersin</label>
+  </div>
+</section>
+
+<section id="tarif">
+  <h2>Tariflar</h2>
+  <p class="lead">Bepul boshlang. Ko'proq imkoniyat kerak bo'lsa, Premium'ga o'ting.</p>
+  <div class="plans">
+    <div class="plan">
+      <h3>Bepul</h3>
+      <div class="price">0 so'm</div>
+      <ul><li>Kuniga 8 ta yangi so'z</li><li>A1–A2 darajalar</li><li>Kuniga 5 ta test savoli</li><li>Suhbatda 10 ta xabar</li></ul>
+      <a class="btn alt" href="#quiz" style="margin:0">Boshlash</a>
+    </div>
+    <div class="plan pro">
+      <h3>Premium</h3>
+      <div class="price">59 000 so'm<span> / oy</span></div>
+      <ul><li>Cheksiz so'z va testlar</li><li>Hamma darajalar: A1–C1</li><li>Ovozli suhbat, cheklovsiz</li><li>Talaffuz va grammatika tahlili</li><li>Reklamasiz</li></ul>
+      <button class="btn" id="buy">Premium'ga o'tish</button>
+      <p class="note" id="payNote"></p>
+    </div>
+  </div>
+</section>
+
+<footer>© Grok — ingliz tilini o'rganish sayti</footer>
+</div>
+
+<script>
+const words=[["hello","salom","Hello, my name is Ali."],["book","kitob","I read a book every week."],["water","suv","Can I have some water?"],["friend","do'st","She is my best friend."],["house","uy","Our house is near the park."],["happy","baxtli","I am happy today."],["learn","o'rganmoq","I want to learn English."],["thank you","rahmat","Thank you for your help."]];
+let i=0;const card=document.getElementById('card');
+function show(){card.classList.remove('flip');document.getElementById('en').textContent=words[i][0];document.getElementById('uz').textContent=words[i][1];document.getElementById('ex').textContent=words[i][2];document.getElementById('cnt').textContent=(i+1)+' / '+words.length}
+card.onclick=()=>card.classList.toggle('flip');
+document.getElementById('next').onclick=()=>{i=(i+1)%words.length;show()};
+show();
+
+const Q=[["By the time she arrived, they ______ for two hours.","had been waiting",["have waited","had been waiting","were waiting"]],["Had I known about the delay, I ______ earlier.","would have left",["would have left","would leave","will have left"]],["Which word is closest in meaning to \"ubiquitous\"?","found everywhere",["very rare","extremely old","found everywhere"]],["She insisted ______ paying for the dinner.","on",["in","at","on"]],["No sooner ______ the door than the phone rang.","had he opened",["he had opened","had he opened","did he opened"]],["What does \"ephemeral\" mean?","lasting a very short time",["lasting a very short time","extremely important","hard to understand"]],["If only I ______ more time yesterday.","had had",["had","have had","had had"]]];
+let n=0,s=0,lock=false;
+function render(){
+  const q=Q[n];lock=false;
+  document.getElementById('qn').textContent='Savol '+(n+1)+' / '+Q.length;
+  document.getElementById('sc').textContent='Ball: '+s;
+  document.getElementById('q').textContent=q[0];
+  document.getElementById('again').style.display='none';
+  const box=document.getElementById('opts');box.innerHTML='';
+  q[2].forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o;
+    b.onclick=()=>{if(lock)return;lock=true;
+      const right=o===q[1];if(right)s++;
+      b.classList.add(right?'ok':'bad');
+      if(!right)[...box.children].forEach(x=>{if(x.textContent===q[1])x.classList.add('ok')});
+      document.getElementById('sc').textContent='Ball: '+s;
+      setTimeout(()=>{n++;n<Q.length?render():finish()},900)};
+    box.appendChild(b)});
+}
+function finish(){
+  document.getElementById('qn').textContent='Tugadi';
+  document.getElementById('q').textContent='Natija: '+s+' / '+Q.length+(s===Q.length?' — ajoyib!':s>=3?' — yaxshi!':' — yana urinib ko\'ring.');
+  document.getElementById('opts').innerHTML='';
+  document.getElementById('again').style.display='inline-block';
+}
+document.getElementById('again').onclick=()=>{n=0;s=0;render()};
+render();
+
+const WORKER_URL="https://SHU-YERGA-WORKER-MANZILINI-QOYING.workers.dev";
+const TUTOR="You are Grok, a friendly English tutor for Uzbek-speaking learners. Reply in simple English, 1-3 short sentences. If the student made a mistake, show the corrected sentence first. Add a very short Uzbek hint in [square brackets] only when a word may be hard. End with one easy question to keep the conversation going.";
+const log=document.getElementById('log'),inp=document.getElementById('msg'),mic=document.getElementById('mic'),hist=[];
+let sampleFn=null;
+function add(role,t){const d=document.createElement('div');d.className='m '+role;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
+add('bot',"Hi! I'm Grok. Let's practise English. What did you do today?");
+function speak(t){const v=document.getElementById('vo');if(!('speechSynthesis' in window)||!v.checked)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/\[.*?\]/g,''));u.lang='en-US';speechSynthesis.speak(u)}
+async function send(text){
+  text=text.trim();if(!text)return;inp.value='';add('me',text);hist.push('Student: '+text);
+  const out=add('bot','…');
+  try{
+    const res=await fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:hist.slice(-12).join('\n')+'\nTutor:'})});
+    if(!res.ok)throw new Error('bad');
+    const r=await res.json();
+    out.textContent=r.text;hist.push('Tutor: '+r.text);speak(r.text);
+  }catch(e){out.textContent=(e&&e.code==='not_granted')?"Ruxsat berilmadi.":"Xatolik bo'ldi. Qayta urinib ko'ring."}
+}
+document.getElementById('go').onclick=()=>send(inp.value);
+inp.onkeydown=e=>{if(e.key==='Enter')send(inp.value)};
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let rec=null,on=false;
+if(!SR){mic.disabled=true;mic.textContent='🎤 Mavjud emas';mic.title="Bu brauzer ovozni tanimaydi. Chrome yoki Safari'dan foydalaning."}
+mic.onclick=()=>{
+  if(on){rec.stop();return}
+  speechSynthesis&&speechSynthesis.cancel();
+  rec=new SR();rec.lang='en-US';rec.interimResults=false;
+  rec.onstart=()=>{on=true;mic.classList.add('on');mic.textContent='● Tinglayapman…'};
+  rec.onend=()=>{on=false;mic.classList.remove('on');mic.textContent='🎤 Gapirish'};
+  rec.onresult=e=>send(e.results[0][0].transcript);
+  rec.onerror=()=>add('bot',"Mikrofon ishlamadi. Brauzerda mikrofonga ruxsat bering yoki yozib yuboring.");
+  rec.start();
+};
+document.getElementById('buy').onclick=()=>{document.getElementById('payNote').textContent="To'lov tizimi hali ulanmagan. Tez orada qo'shiladi."};
+</script>
+</body>
+</html>
